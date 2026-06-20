@@ -1,78 +1,152 @@
 import Image from "next/image";
 import Nav from "./components/Nav";
+import Carousel from "./components/Carousel";
 
 const WA_LINK = "https://wa.me/59899067539";
 const IG_LINK = "https://www.instagram.com/aimara.bolger";
 
+const carouselSlides = [
+  {
+    src: "/dermapen.jpeg",
+    alt: "Tratamiento Dermapen",
+    label: "Tratamiento",
+    caption: "Dermapen",
+    position: "center 80%",
+  },
+  {
+    src: "/image1.jpeg",
+    alt: "Mesoterapia facial",
+    label: "Tratamiento",
+    caption: "Mesoterapia",
+  },
+  {
+    src: "/image3-carousel.jpeg",
+    alt: "Atención personalizada en consulta",
+    label: "Experiencia",
+    caption: "Atención Personalizada",
+  },
+];
+
 const services = [
   {
-    number: "01",
-    name: "Limpieza de Cutis",
+    icon: DropletIcon,
+    name: "Limpieza Profunda con Peeling",
     description:
-      "Elimina impurezas, células muertas y exceso de sebo. Deja la piel fresca, limpia y oxigenada.",
+      "Higiene, extracción y renovación en una sola sesión. Piel limpia, descongestionada y luminosa.",
+    duration: "60 MIN",
+    price: "$2.500",
   },
   {
-    number: "02",
-    name: "Peeling",
+    icon: SparkleIcon,
+    name: "Peeling de Ácido / Retinoico",
     description:
-      "Renueva las capas superficiales de la piel, mejora textura, manchas y luminosidad.",
+      "Renueva la superficie de la piel: mejora textura, manchas y luminosidad.",
+    duration: "30 MIN",
+    price: "$2.700",
   },
   {
-    number: "03",
+    icon: SyringeIcon,
     name: "Mesoterapia Facial",
     description:
       "Microinyecciones de activos que hidratan, rejuvenecen y mejoran la calidad de la piel.",
+    duration: "45 MIN",
+    price: "$3.500",
   },
   {
-    number: "04",
-    name: "Mesoestetic",
+    icon: SyringeIcon,
+    name: "Mesoterapia Francesa",
+    description:
+      "Cóctel con ácido hialurónico y múltiples activos para una piel más hidratada y luminosa.",
+    duration: "45 MIN",
+    price: "$5.000",
+  },
+  {
+    icon: LeafIcon,
+    name: "Mesoterapia Mesoestetic",
     description:
       "Fórmulas de alta concentración que revitalizan, reafirman y devuelven vitalidad a la piel.",
+    duration: "45 MIN",
+    price: "$5.000",
   },
   {
-    number: "05",
-    name: "Mesoterapia Francesa Filorga",
+    icon: BodyIcon,
+    name: "Mesoterapia Corporal",
     description:
-      "Cócteles con ácido hialurónico y más de 50 activos para una piel más hidratada, luminosa y saludable.",
+      "Activos específicos para mejorar firmeza, textura y aspecto de la piel del cuerpo.",
+    duration: "50 MIN",
+    price: "$2.500",
+    note: "Sesión individual · consultar planes",
   },
   {
-    number: "06",
+    icon: HairIcon,
     name: "Mesoterapia Capilar",
     description:
       "Fortalece el cuero cabelludo, frena la caída y estimula el crecimiento del cabello.",
+    duration: "30 MIN",
+    price: "$1.700",
+    note: "Sesión individual · consultar planes",
   },
   {
-    number: "07",
+    icon: VialIcon,
     name: "Plasma Rico en Plaquetas (PRP)",
     description:
-      "Regenera, repara y estimula. Mejora la calidad de la piel y el cabello de forma natural. Facial, corporal y capilar.",
+      "Regenera y repara de forma natural. Mejora la calidad de la piel y el cabello.",
+    duration: "60 MIN",
+    price: "$5.000",
   },
   {
-    number: "08",
-    name: "Radiofrecuencia Facial y Corporal",
+    icon: ZapIcon,
+    name: "Radiofrecuencia Facial",
     description:
-      "Reafirma, mejora la flacidez y estimula la producción de colágeno. Resultados progresivos y naturales.",
+      "Reafirma, mejora la flacidez y estimula la producción de colágeno.",
+    duration: "40 MIN",
+    price: "$3.500",
   },
   {
-    number: "09",
+    icon: ZapIcon,
     name: "Radiofrecuencia Fraccionada",
     description:
       "Actúa en las capas profundas de la piel para mejorar arrugas, cicatrices, poros y textura.",
+    duration: "45 MIN",
+    price: "$4.000",
   },
   {
-    number: "10",
-    name: "Luz Pulsada Intensa (IPL)",
+    icon: DotsIcon,
+    name: "Dermapen",
     description:
-      "Mejora manchas, rosácea, acné, tono irregular y signos de fotoenvejecimiento.",
+      "Microagujas que estimulan el colágeno: mejora textura, poros y cicatrices.",
+    duration: "45 MIN",
+    price: "$3.500",
   },
 ];
 
 const valores = [
-  "Transparencia",
-  "Respeto",
-  "Empatía",
-  "Discrecionalidad",
-  "Responsabilidad",
+  {
+    icon: EyeIcon,
+    name: "Transparencia",
+    description:
+      "Comunicación clara y honesta en cada diagnóstico y tratamiento.",
+  },
+  {
+    icon: UsersIcon,
+    name: "Respeto",
+    description: "Tu ritmo, tu piel y tus tiempos siempre en primer lugar.",
+  },
+  {
+    icon: HeartIcon,
+    name: "Empatía",
+    description: "Escuchamos antes de proponer: cada caso es único.",
+  },
+  {
+    icon: LockIcon,
+    name: "Discrecionalidad",
+    description: "Tu privacidad e información se resguardan con cuidado.",
+  },
+  {
+    icon: ShieldCheckIcon,
+    name: "Responsabilidad",
+    description: "Compromiso real con resultados seguros y sostenidos.",
+  },
 ];
 
 export default function Home() {
@@ -84,80 +158,75 @@ export default function Home() {
         {/* ─── HERO ──────────────────────────────────────────── */}
         <section
           id="inicio"
-          className="relative min-h-screen bg-cream overflow-hidden"
+          className="relative min-h-screen bg-cream overflow-hidden flex items-center"
         >
-          <div className="w-full min-h-screen grid lg:grid-cols-2">
-            {/* ── Text column ── */}
-            <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 pt-32 pb-20 lg:py-0">
-              {/* Botanical decoration (text side only) */}
-              <div className="absolute top-0 left-4 w-24 pointer-events-none select-none opacity-20 hidden lg:block">
-                <BotanicalSVG />
-              </div>
+          {/* Centered background image — a sheer veil over the cream, not a photo */}
+          <div className="absolute inset-0" aria-hidden="true">
+            <Image
+              src="/image2.jpeg"
+              alt=""
+              fill
+              className="object-cover opacity-[0.28]"
+              style={{ objectPosition: "40% 25%" }}
+              priority
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-cream)_85%)]" />
+          </div>
 
-              <p className="font-sans text-[10px] tracking-[0.5em] uppercase text-sage mb-8">
-                Cosmetología Médica
-              </p>
+          {/* Botanical decoration, desktop only */}
+          <div className="absolute -right-6 bottom-10 w-28 pointer-events-none select-none opacity-15 hidden lg:block">
+            <BotanicalSVG />
+          </div>
 
-              <h1 className="font-serif font-light text-brown leading-none">
-                <span className="block text-6xl sm:text-7xl md:text-8xl tracking-[0.12em]">
-                  Aimara
-                </span>
-                <span className="block text-6xl sm:text-7xl md:text-8xl tracking-[0.12em] mt-2">
-                  Bolger
-                </span>
-              </h1>
+          <div className="relative z-10 w-full flex flex-col items-center text-center px-6 sm:px-10 pt-36 pb-24 lg:pt-32 lg:pb-28 max-w-2xl mx-auto">
+            <p className="font-sans text-[10px] tracking-[0.5em] uppercase text-sage mb-8">
+              Cosmetología Médica
+            </p>
 
-              <div className="flex items-center gap-4 my-8">
-                <div className="w-14 h-px bg-sage/50" />
-                <LeafIcon className="w-4 h-4 text-sage/70" />
-                <div className="w-14 h-px bg-sage/50" />
-              </div>
+            <h1 className="font-serif font-normal text-brown leading-none">
+              <span className="block text-6xl sm:text-7xl md:text-8xl tracking-[0.12em]">
+                Aimara
+              </span>
+              <span className="block text-6xl sm:text-7xl md:text-8xl tracking-[0.12em] mt-2">
+                Bolger
+              </span>
+            </h1>
 
-              <p className="font-serif text-xl md:text-2xl italic text-brown-mid max-w-md mb-3">
-                Para una piel sana, equilibrada y luminosa
-              </p>
-              <p className="font-sans text-sm text-brown-light max-w-sm leading-relaxed mb-10">
-                Tecnología, ciencia y cuidado personalizado para potenciar tu
-                belleza natural
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 bg-sage text-cream-light font-sans text-[11px] tracking-[0.3em] uppercase px-8 py-4 hover:bg-sage-dark transition-colors duration-200"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  Agendar Sesión
-                </a>
-                <a
-                  href="#tratamientos"
-                  className="flex items-center justify-center font-sans text-[11px] tracking-[0.3em] uppercase text-brown border border-cream-dark px-8 py-4 hover:border-sage hover:text-sage transition-colors duration-200"
-                >
-                  Ver Tratamientos
-                </a>
-              </div>
+            <div className="flex items-center gap-4 my-8">
+              <div className="w-14 h-px bg-sage/50" />
+              <LeafIcon className="w-4 h-4 text-sage/70" />
+              <div className="w-14 h-px bg-sage/50" />
             </div>
 
-            {/* ── Image column ── */}
-            <div className="relative h-72 lg:h-auto overflow-hidden">
-              <Image
-                src="/image3.jpeg"
-                alt="Aimara Bolger — Cosmetóloga Médica"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-              {/* Fade into cream on the left edge (desktop) */}
-              <div className="hidden lg:block absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-cream to-transparent" />
-              {/* Fade into cream at the bottom (mobile) */}
-              <div className="lg:hidden absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-cream to-transparent" />
+            <p className="font-serif text-xl md:text-2xl italic text-brown-mid max-w-md mb-3">
+              Para una piel sana, equilibrada y luminosa
+            </p>
+            <p className="font-sans text-sm text-brown-light max-w-sm leading-relaxed mb-10">
+              Tecnología, ciencia y cuidado personalizado para potenciar tu
+              belleza natural
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2.5 bg-sage text-cream-light font-sans text-[11px] tracking-[0.3em] uppercase px-8 py-4 hover:bg-sage-dark transition-colors duration-200"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                Agendar Sesión
+              </a>
+              <a
+                href="#tratamientos"
+                className="flex items-center justify-center font-sans text-[11px] tracking-[0.3em] uppercase text-brown border border-cream-dark px-8 py-4 hover:border-sage hover:text-sage transition-colors duration-200"
+              >
+                Ver Tratamientos
+              </a>
             </div>
           </div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-8 lg:left-1/4 flex flex-col items-center gap-2">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
             <span className="font-sans text-[9px] tracking-[0.4em] uppercase text-brown-light/50">
               Scroll
             </span>
@@ -165,41 +234,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── PHOTO STRIP ───────────────────────────────────── */}
-        <div className="grid grid-cols-2 h-64 sm:h-80 md:h-96">
-          <div className="relative overflow-hidden group">
-            <Image
-              src="/dermapen.jpeg"
-              alt="Tratamiento Dermapen"
-              fill
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-brown/35 group-hover:bg-brown/20 transition-colors duration-500" />
-            <div className="absolute bottom-5 left-6 sm:bottom-7 sm:left-8">
-              <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.4em] uppercase text-cream/60 mb-1">
-                Tratamiento
-              </p>
-              <p className="font-serif text-lg sm:text-2xl text-cream/90 font-light">
-                Dermapen
-              </p>
-            </div>
-          </div>
-          <div className="relative overflow-hidden group">
-            <Image
-              src="/image1.jpeg"
-              alt="Mesoterapia"
-              fill
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-brown/35 group-hover:bg-brown/20 transition-colors duration-500" />
-            <div className="absolute bottom-5 left-6 sm:bottom-7 sm:left-8">
-              <p className="font-sans text-[8px] sm:text-[9px] tracking-[0.4em] uppercase text-cream/60 mb-1">
-                Tratamiento
-              </p>
-              <p className="font-serif text-lg sm:text-2xl text-cream/90 font-light">
-                Mesoterapia
-              </p>
-            </div>
+        {/* ─── TREATMENT CAROUSEL ────────────────────────────── */}
+        <div className="bg-cream-light pt-16 md:pt-20 px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <Carousel slides={carouselSlides} />
           </div>
         </div>
 
@@ -221,35 +259,56 @@ export default function Home() {
             </div>
 
             {/* Services grid */}
-            <div className="grid md:grid-cols-2 gap-px bg-cream-dark">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
               {services.map((service) => (
-                <div
-                  key={service.number}
-                  className="bg-cream-light p-8 md:p-10 hover:bg-cream transition-colors duration-300 group"
+                <a
+                  key={service.name}
+                  href={`${WA_LINK}?text=${encodeURIComponent(
+                    `Hola! Estoy interesad@ en ${service.name}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex flex-col bg-cream-light border border-cream-dark rounded-xl p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-sage hover:shadow-lg hover:shadow-sage/10"
                 >
-                  <div className="flex gap-5 items-start">
-                    {/* Number */}
-                    <span className="font-serif text-4xl font-light text-sage/30 leading-none shrink-0 mt-1 group-hover:text-sage/50 transition-colors duration-300">
-                      {service.number}
+                  {/* WhatsApp affordance, revealed on hover */}
+                  <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-sage flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-cream-light" />
+                  </div>
+
+                  <div className="w-12 h-12 rounded-full bg-sage-light flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-sage">
+                    <service.icon className="w-6 h-6 text-sage transition-transform duration-300 group-hover:text-cream-light group-hover:scale-110 group-hover:rotate-6" />
+                  </div>
+
+                  <h3 className="font-serif text-xl font-medium text-brown mb-2 tracking-wide transition-colors duration-300 group-hover:text-sage-dark">
+                    {service.name}
+                  </h3>
+                  <p className="font-sans text-sm text-brown-light leading-relaxed flex-1">
+                    {service.description}
+                  </p>
+                  <div className="flex items-end justify-between gap-4 mt-6 pt-5 border-t border-cream-dark transition-colors duration-300 group-hover:border-sage/30">
+                    <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-brown-light/70">
+                      ~ {service.duration}
                     </span>
-                    <div>
-                      <h3 className="font-serif text-xl font-medium text-brown mb-2 tracking-wide">
-                        {service.name}
-                      </h3>
-                      <p className="font-sans text-sm text-brown-light leading-relaxed">
-                        {service.description}
-                      </p>
+                    <div className="text-right">
+                      <span className="font-sans text-[11px] tracking-[0.15em] uppercase text-sage font-medium">
+                        {service.price}
+                      </span>
+                      {service.note && (
+                        <p className="font-sans text-[9px] text-brown-light/60 mt-1 leading-snug">
+                          {service.note}
+                        </p>
+                      )}
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
             {/* Bottom note */}
             <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-cream-dark">
               <p className="font-serif italic text-brown-mid text-center md:text-left max-w-md text-lg leading-relaxed">
-                Cada piel es única. Por eso evaluamos tu caso para diseñar el
-                tratamiento ideal para vos.
+                Precios y duración orientativos. Cada piel es única — evaluamos
+                tu caso para diseñar el tratamiento ideal en la consulta.
               </p>
               <a
                 href={WA_LINK}
@@ -345,18 +404,31 @@ export default function Home() {
             </div>
 
             {/* Values */}
-            <div className="pt-10 border-t border-cream-dark text-center">
-              <p className="font-sans text-[10px] tracking-[0.4em] uppercase text-sage mb-7">
-                Valores
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="pt-10 border-t border-cream-dark">
+              <div className="text-center mb-10">
+                <p className="font-sans text-[10px] tracking-[0.4em] uppercase text-sage mb-3">
+                  Lo que nos guía
+                </p>
+                <h3 className="font-serif text-2xl md:text-3xl font-light text-brown">
+                  Nuestros Valores
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
                 {valores.map((valor) => (
-                  <span
-                    key={valor}
-                    className="font-sans text-[10px] tracking-[0.3em] uppercase text-brown-mid border border-cream-dark px-6 py-2.5 hover:border-sage hover:text-sage transition-colors duration-200"
+                  <div
+                    key={valor.name}
+                    className="group flex flex-col items-center text-center bg-cream-light border border-cream-dark rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-sage hover:shadow-md hover:shadow-sage/10"
                   >
-                    {valor}
-                  </span>
+                    <div className="w-12 h-12 rounded-full bg-sage-light flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-sage">
+                      <valor.icon className="w-5 h-5 text-sage transition-all duration-300 group-hover:text-cream-light group-hover:scale-110" />
+                    </div>
+                    <h4 className="font-serif text-base font-medium text-brown mb-1.5 tracking-wide">
+                      {valor.name}
+                    </h4>
+                    <p className="font-sans text-xs text-brown-light leading-relaxed">
+                      {valor.description}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
@@ -692,6 +764,221 @@ function LocationIcon({ className = "w-4 h-4" }: { className?: string }) {
     >
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
       <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function DropletIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M12 2.5s7 7.5 7 12.5a7 7 0 11-14 0c0-5 7-12.5 7-12.5z" />
+    </svg>
+  );
+}
+
+function SparkleIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" />
+    </svg>
+  );
+}
+
+function SyringeIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M3 21l3-3M13.5 4.5l6 6M16.5 1.5l6 6M5 19l4.5-4.5 1.8 1.8L15 12.6 11.4 9 7.7 12.7l1.8 1.8L5 19zM11 7l6 6" />
+    </svg>
+  );
+}
+
+function BodyIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <circle cx="12" cy="4.5" r="2.5" />
+      <path d="M6 21l1.5-8.5a3 3 0 013-2.5h3a3 3 0 013 2.5L18 21M9.5 10.5L9 16h6l-.5-5.5" />
+    </svg>
+  );
+}
+
+function HairIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M6 3c-2 4 2 5 0 9s2 5 0 9M12 3c-2 4 2 5 0 9s2 5 0 9M18 3c-2 4 2 5 0 9s2 5 0 9" />
+    </svg>
+  );
+}
+
+function VialIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M9 2h6M10 2v7.5L5.5 17a3 3 0 002.6 4.5h7.8a3 3 0 002.6-4.5L14 9.5V2M7.5 15h9" />
+    </svg>
+  );
+}
+
+function ZapIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+    </svg>
+  );
+}
+
+function DotsIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <circle cx="6" cy="6" r="1.6" />
+      <circle cx="12" cy="6" r="1.6" />
+      <circle cx="18" cy="6" r="1.6" />
+      <circle cx="6" cy="12" r="1.6" />
+      <circle cx="12" cy="12" r="1.6" />
+      <circle cx="18" cy="12" r="1.6" />
+      <circle cx="6" cy="18" r="1.6" />
+      <circle cx="12" cy="18" r="1.6" />
+      <circle cx="18" cy="18" r="1.6" />
+    </svg>
+  );
+}
+
+function EyeIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+function UsersIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+      <circle cx="17.5" cy="9" r="2.2" />
+      <path d="M15.3 14.6c2.2.7 3.8 2.8 4 5.4" />
+    </svg>
+  );
+}
+
+function HeartIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M12 21s-7.5-4.5-9.5-9A5 5 0 0112 6a5 5 0 019.5 6c-2 4.5-9.5 9-9.5 9z" />
+    </svg>
+  );
+}
+
+function LockIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect x="5" y="11" width="14" height="9" rx="2" />
+      <path d="M8 11V7a4 4 0 018 0v4" />
+    </svg>
+  );
+}
+
+function ShieldCheckIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M12 2.5l7.5 3v6c0 5-3.5 8.5-7.5 10-4-1.5-7.5-5-7.5-10v-6l7.5-3z" />
+      <path d="M9 12l2 2 4-4" />
     </svg>
   );
 }

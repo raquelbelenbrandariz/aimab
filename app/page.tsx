@@ -20,6 +20,25 @@ const carouselSlides = [
     caption: "Mesoterapia",
   },
   {
+    src: "/prpfacial.jpeg",
+    alt: "Plasma Rico en Plaquetas Facial",
+    label: "Tratamiento",
+    caption: "Plasma Rico en Plaquetas Facial",
+  },
+  {
+    src: "/prpcapilar.jpeg",
+    alt: "Plasma Rico en Plaquetas Capilar",
+    label: "Tratamiento",
+    caption: "Plasma Rico en Plaquetas Capilar",
+    position: "center 40%",
+  },
+  {
+    src: "/equipoplasma.jpeg",
+    alt: "Equipo Plasma Rico en Plaquetas",
+    label: "Tratamiento",
+    caption: "Equipo Plasma Rico en Plaquetas",
+  },
+  {
     src: "/image3-carousel.jpeg",
     alt: "Atención personalizada en consulta",
     label: "Experiencia",
@@ -247,7 +266,7 @@ export default function Home() {
             {/* Section header */}
             <div className="text-center mb-16">
               <p className="font-sans text-[10px] tracking-[0.5em] uppercase text-sage mb-4">
-                Especialidades
+                La Clínica
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-light text-brown mb-3">
                 Tratamientos
